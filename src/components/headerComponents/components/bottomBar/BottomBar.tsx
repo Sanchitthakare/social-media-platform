@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -11,7 +10,6 @@ import Image from "next/image";
 type Props = {};
 
 const BottomBar = (props: Props) => {
-  const { data: session, status } = useSession();
   const pathname = usePathname();
   const view = pathname.split("/")[1];
 
@@ -54,21 +52,10 @@ const BottomBar = (props: Props) => {
         href={"/user/profile?view=general"}
         className="flex flex-col justify-center items-center cursor-pointer text-gray-600  p-2 pb-0 hover:text-black"
       >
-        {session?.user?.image ? (
-          <>
-            <Image
-              src={session?.user?.image}
-              alt="user"
-              width={25}
-              height={25}
-              className="rounded-full"
-            />
-          </>
-        ) : (
-          <>
-            <FaUserCircle size={20} />{" "}
-          </>
-        )}
+        <>
+          <FaUserCircle size={20} />{" "}
+        </>
+
         <span className="text-[10px] flex items-center">Me</span>
       </Link>
     </div>

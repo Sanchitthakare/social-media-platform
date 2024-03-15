@@ -1,4 +1,3 @@
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { FaLinkedin } from "react-icons/fa";
@@ -33,21 +32,14 @@ const HomePageSigin = ({
             <div className="flex pt-8 justify-between items-center  gap-2 md:flex-row flex-col">
               <button
                 className="p-2 border rounded-2xl flex justify-center items-center space-x-2  lg:w-1/2 w-full"
-                onClick={() => {
-                  signIn("google", { callbackUrl: "/feed" });
-                }}
+                
               >
                 <span>
                   <FcGoogle size={25} />
                 </span>
                 <span className="text-sm">Sign In with Google</span>
               </button>
-              <button
-                className="p-2 border rounded-2xl flex justify-center items-center space-x-2 lg:w-1/2 w-full"
-                onClick={() => {
-                  signIn("linkedin", { callbackUrl: "/feed" });
-                }}
-              >
+              <button className="p-2 border rounded-2xl flex justify-center items-center space-x-2 lg:w-1/2 w-full">
                 <span className="text-blue-600">
                   <FaLinkedin size={25} />
                 </span>

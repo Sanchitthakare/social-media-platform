@@ -7,7 +7,6 @@ import { MdOutlineManageSearch } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaCaretDown } from "react-icons/fa";
-import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 type Props = {
@@ -16,7 +15,6 @@ type Props = {
 };
 
 const Navbar = ({ searchValue, setSearchValue }: Props) => {
-  const { data: session, status } = useSession();
   const pathname = usePathname();
   const view = pathname.split("/")[1];
 
@@ -53,7 +51,6 @@ const Navbar = ({ searchValue, setSearchValue }: Props) => {
                 width={200}
                 height={200}
               />
-         
             </div>
             <div
               className={`w-full p-1 border-2 rounded-lg flex space-x-2  ${
@@ -111,21 +108,10 @@ const Navbar = ({ searchValue, setSearchValue }: Props) => {
               onClick={() => setOpenDropDown((prev) => !prev)}
               ref={dropdownRef}
             >
-              {session?.user?.image ? (
-                <>
-                  <Image
-                    src={session?.user?.image}
-                    alt="user"
-                    width={25}
-                    height={25}
-                    className="rounded-full"
-                  />
-                </>
-              ) : (
-                <>
-                  <FaUserCircle size={20} />{" "}
-                </>
-              )}
+              <>
+                <FaUserCircle size={20} />{" "}
+              </>
+
               <span className="text-[10px] flex items-center">
                 Me <FaCaretDown />
               </span>
@@ -136,24 +122,12 @@ const Navbar = ({ searchValue, setSearchValue }: Props) => {
               <div className=" bg-white shadow-md w-72  rounded-lg flex flex-col gap-2 border justify-center items-center ">
                 <div className="flex mt-2">
                   <div className="m-2 flex justify-center items-start">
-                    {session?.user?.image ? (
-                      <>
-                        <Image
-                          src={session?.user?.image}
-                          alt="user"
-                          width={100}
-                          height={100}
-                          className="rounded-full"
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <FaUserCircle size={40} />{" "}
-                      </>
-                    )}
+                    <>
+                      <FaUserCircle size={40} />{" "}
+                    </>
                   </div>
                   <div className="flex flex-col justify-center items-start p-2">
-                    <h1 className="font-semibold">{session?.user.name}</h1>
+                    <h1 className="font-semibold"></h1>
                     <h5 className="text-[12px]">
                       AI | Data Science | Full Stack Developer | MERN Stack |
                       Next.js | Java | Python
@@ -172,12 +146,7 @@ const Navbar = ({ searchValue, setSearchValue }: Props) => {
                 >
                   Setting
                 </Link>
-                <div
-                  onClick={() => {
-                    signOut();
-                  }}
-                  className="hover:bg-gray-100 w-full p-1 text-left pl-6 cursor-pointer mb-4"
-                >
+                <div className="hover:bg-gray-100 w-full p-1 text-left pl-6 cursor-pointer mb-4">
                   Logout
                 </div>
               </div>

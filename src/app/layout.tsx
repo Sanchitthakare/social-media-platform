@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Provider from "@/context/provider";
 import { Toaster } from "react-hot-toast";
-import HeaderAndFooterWrapper from "@/wrapper/HeaderAndFooterWrapper";
 import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,16 +17,12 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <Provider>
-      <html lang="en">
-        <body className={inter.className}>
-          <NextTopLoader />
-          <HeaderAndFooterWrapper>
-            <Toaster />
-            {children}
-          </HeaderAndFooterWrapper>
-        </body>
-      </html>
-    </Provider>
+    <html lang="en">
+      <body className={inter.className}>
+        <NextTopLoader />
+        <Toaster />
+        {children}
+      </body>
+    </html>
   );
 }

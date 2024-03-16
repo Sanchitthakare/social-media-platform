@@ -4,6 +4,7 @@ import HomePageSigin from "./homePageSingin/HomePageSigin";
 import HomePageInfoPage1 from "./homePageInfo/HomePageInfoPage1";
 import HomePageInfoPage from "./homePageInfo/HomePageInfoPage";
 import HomePageInfoPage2 from "./homePageInfo/HomePageInfoPage2";
+import Footer from "@/components/footerComponets/components/footer/Footer";
 
 type Props = {
   email: string;
@@ -31,10 +32,15 @@ const mainUI = ({
         handleLogin={handleLogin}
       />
       <HomePageInfoPage />
-      <div className="text-2xl text-blue-500 text-center py-3">Lorem Ipsum</div>
+      <div className="text-2xl text-black text-center py-8 font-bold">
+        Explore Possibilities at ForeTeach
+      </div>
       <HomePageInfoPage1 />
-      <div className="text-2xl text-blue-500 text-center py-3">Lorem Ipsum</div>
+      <div className="text-2xl text-black text-center py-8 font-bold">
+        How can this platform benefit you
+      </div>
       <HomePageInfoPage2 />
+      <Footer />
     </div>
   );
 };

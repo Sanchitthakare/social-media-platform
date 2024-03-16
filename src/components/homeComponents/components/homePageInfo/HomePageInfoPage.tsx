@@ -1,24 +1,27 @@
 import React from "react";
+import Image from "next/image";
+import girl_image from "./girl_image.png";
 
-type Props = {};
-
-const HomePageInfoPage = (props: Props) => {
+const HomePageInfoPage = () => {
   return (
     <div className="max-w-7xl mx-auto mt-16 p-2">
       <div className="bg-blue-200 flex w-full p-4 rounded-xl md:rounded-full mb-4 ">
         <div className="hidden md:w-1/3 bg-white rounded-l-full md:flex justify-center items-center text-2xl text-blue-500">
-        Lorem Ipsum
+          <div style={{ width: '100%', maxWidth: '300px', maxHeight: '300px' ,borderRadius: '50%'}}>
+            <Image src={girl_image} alt="girl_image" layout="responsive" width={300} height={300} />
+          </div>
         </div>
         <div className="w-full md:w-2/3 p-10 flex flex-col gap-4">
-          <p className="md:hidden flex">Lorem Ipsum</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-          ratione sunt dolores pariatur culpa necessitatibus omnis nisi minus
-          possimus assumenda magni, ipsa voluptatibus veritatis est laboriosam
-          maiores corrupti corporis. Doloremque ad hic, cumque facilis quod
-          nulla omnis non! Omnis provident repudiandae dolore voluptatem
-          accusamus porro suscipit doloremque veritatis harum perspiciatis
-          laudantium odit eaque dolor soluta in laboriosam doloribus nam, quidem
-          tempore voluptatum vero laborum dicta fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam sed quis temporibus soluta inventore commodi expedita nsto voluptatem nulla consequatur, dolorem tempora impedit vitae temporibus neque sequi iure, laboriosam itaque minus assumenda explicabo quaerat?</p>
+        <h3 className="text-4xl font-bold text-blue-800 dark:text-blue" style={{ marginTop: "-20px" }}>About ForeTeach</h3>
+
+        <br/>
+          <p className="text-lg text-gray-700 leading-relaxed pl-4"></p>
+           
+          <p>ForeTeach is a platform where you can learn, earn, sell, and build your business from scratch.
+            <br/>
+            <br/>
+            Here, you can find Investor, Founders, Creators, Freelancer & Agencies from all across the nation to help you accelerate your start-up journey. Register Now with your LinkedIn profile and become part of India's first start-up network
+          </p>
         </div>
       </div>
     </div>

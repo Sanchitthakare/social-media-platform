@@ -4,8 +4,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import userRoutes from "./routes/userRoutes";
-import ProfileRoutes from "./routes/ProfileRoutes";
+import preRegistrationRoutes from "./routes/preRegistrationRoutes";
 
 dotenv.config();
 const app = express();
@@ -18,8 +17,7 @@ app.use(cors());
 app.use(cookieParser());
 
 // Routes
-app.use("/api", ProfileRoutes);
-app.use("/api", userRoutes);
+app.use("/api", preRegistrationRoutes);
 
 // Start the server
 const port = process.env.PORT || 4000;

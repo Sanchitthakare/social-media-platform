@@ -1,106 +1,119 @@
+import React, { useState } from "react";
 import Link from "next/link";
-import React from "react";
-import { FaLinkedin } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import Image from "next/image";
-
-type Props = {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  handleLogin: () => void;
-};
 
 const HomePageSigin = ({
-  email,
-  setEmail,
-  password,
-  setPassword,
   handleLogin,
-}: Props) => {
+  setEmail,
+  setPassword,
+  email,
+  password,
+}) => {
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+  const [agreement, setAgreement] = useState(false);
+  const [whatsapp, setWhatsapp] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    
+    if (!name || !email || !role || !whatsapp || !agreement) {
+      setError("Please fill in all the required fields.");
+      return;
+    }
+    handleLogin();
+  };
+
   return (
-    <div className=" p-2 mt-8">
+    <div className="p-2 mt-8">
       <div className="max-w-7xl mx-auto flex md:flex-row flex-col-reverse ">
         <div className="md:w-1/2 md:p-0 p-2">
-          <div className="mt-6 bg-white rounded-xl">
-            <div className="">
-              <span className="md:text-4xl sm:text-3xl text-xl font-semibold">
-                Sign In to ForeTeach
-              </span>
-            </div>
-            <div className="flex pt-8 justify-between items-center  gap-2 md:flex-row flex-col">
-              <button
-                className="p-2 border rounded-2xl flex justify-center items-center space-x-2  lg:w-1/2 w-full"
-                
-              >
-                <span>
-                  <FcGoogle size={25} />
-                </span>
-                <span className="text-sm">Sign In with Google</span>
-              </button>
-              <button className="p-2 border rounded-2xl flex justify-center items-center space-x-2 lg:w-1/2 w-full">
-                <span className="text-blue-600">
-                  <FaLinkedin size={25} />
-                </span>
-                <span className="text-sm">Sign In with LinkedIn</span>
-              </button>
-            </div>
-            <div className="flex items-center justify-center mt-6">
-              <div className="border-b border-gray-400 w-full mr-2"></div>
-              <div className="mr-2">OR</div>
-              <div className="border-b border-gray-400 w-full "></div>
-            </div>
-            <div className="mt-6">
-              <form
-                className="flex flex-col justify-center items-center gap-4"
-                onSubmit={handleLogin}
-              >
+          <div className="mt-6 bg-white rounded-xl p-6">
+            <h2 className="text-3xl font-semibold mb-4">
+              Pre - Register in to ForeTeach
+            </h2>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                className="p-2 rounded-lg bg-gray-200"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                className="p-2 rounded-lg bg-gray-200"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <div className="flex flex-col md:flex-row gap-4">
+                <select
+                  className="p-2 rounded-lg bg-gray-200 flex-1"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <option value="">Select Role</option>
+                  <option value="Investor">Investor</option>
+                  <option value="Startup">Startup</option>
+                </select>
+
                 <input
                   type="text"
-                  name="email"
-                  id="email"
-                  placeholder="Email Address"
-                  className="p-2 rounded-lg w-full bg-gray-200 "
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="whatsapp"
+                  id="whatsapp"
+                  placeholder="WhatsApp Number"
+                  className="p-2 rounded-lg bg-gray-200 flex-1"
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value)}
                 />
-
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  className="p-2 rounded-lg w-full bg-gray-200"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-
-                <button
-                  type="submit"
-                  className="bg-blue-400 p-2 rounded-lg w-full mt-6"
-                >
-                  Login
-                </button>
-              </form>
-              <div className="flex justify-center items-center mt-6 flex-wrap">
-                Already have an account ?{" "}
-                <span className="text-blue-600 underline">
-                  <Link href={"/user/signup"}> Singup</Link>
-                </span>
               </div>
-            </div>
+
+             
+
+              <input
+                type="text"
+                name="linkedin"
+                id="linkedin"
+                placeholder="LinkedIn URL"
+                className="p-2 rounded-lg bg-gray-200"
+                value={linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+              />
+               <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox"
+                  checked={agreement}
+                  onChange={(e) => setAgreement(e.target.checked)}
+                />
+                <span className="ml-2">Agreement</span>
+              </label>
+
+              {error && <p className="text-red-500">{error}</p>}
+
+              <button
+                type="submit"
+                className="bg-blue-400 text-white p-2 rounded-lg mt-6"
+              >
+                Register
+              </button>
+            </form>
+            
           </div>
         </div>
         <div className="md:w-1/2 flex justify-center items-center pl-8">
-          <Image
-            src={"/businessLogo.svg"}
-            width={800}
-            height={800}
-            alt="businessImage"
-          />
+    
         </div>
       </div>
     </div>

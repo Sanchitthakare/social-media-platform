@@ -11,10 +11,9 @@ export default async function preRegistration(req: Request, res: Response) {
       MailId,
       StartUpName,
       ProfileType,
+      CountryCode,
       WhatsAppNo,
-      LinkedinProfile,
     } = req.body;
-
     if (!Name || !MailId || !ProfileType || !WhatsAppNo) {
       return res.status(400).json({
         success: false,
@@ -37,15 +36,10 @@ export default async function preRegistration(req: Request, res: Response) {
         success: false,
         message: "Please enter a valid WhatsApp number",
       });
-    if (!/https?:\/\/\S+/gi.test(LinkedinProfile))
-      return res.status(400).json({
-        success: false,
-        message: "Please enter a valid LinkedIn profile link",
-      });
-
     const [rows] = await (
       await connection
     ).query<mysql.RowDataPacket[]>(
+      
       "SELECT * FROM PreRegistration WHERE MailId = ? OR WhatsAppNo = ?",
       [MailId, WhatsAppNo]
     );
@@ -61,10 +55,9 @@ export default async function preRegistration(req: Request, res: Response) {
     const [row] = await (
       await connection
     ).query<mysql.ResultSetHeader>(
-      "INSERT INTO PreRegistration (Name, MailId, StartUpName, ProfileType, WhatsAppNo,LinkedinProfile) VALUES (?, ?, ?, ?, ?,?)",
-      [Name, MailId, StartUpName, ProfileType, WhatsAppNo, LinkedinProfile]
+      "INSERT INTO PreRegistration (Name, MailId, StartUpName, ProfileType, CountryCode, WhatsAppNo) VALUES (?, ?, ?, ?, ?,?)",
+      [Name, MailId, StartUpName, ProfileType, CountryCode, WhatsAppNo]
     );
-
     if (row.affectedRows === 1) {
       return res.status(201).json({
         success: true,

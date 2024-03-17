@@ -27,17 +27,17 @@ export default async function preRegistration(req: Request, res: Response) {
         success: false,
         message: "Name must be between 2 and 80 characters",
       });
-    if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(MailId))
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(MailId))
       return res.status(400).json({
         success: false,
         message: "Please enter a valid email",
       });
-    if (/^[6-9]\d{9}$/.test(WhatsAppNo))
+    if (!/^[6-9]\d{9}$/.test(WhatsAppNo))
       return res.status(400).json({
         success: false,
         message: "Please enter a valid WhatsApp number",
       });
-    if (/https?:\/\/\S+/gi.test(LinkedinProfile))
+    if (!/https?:\/\/\S+/gi.test(LinkedinProfile))
       return res.status(400).json({
         success: false,
         message: "Please enter a valid LinkedIn profile link",

@@ -17,6 +17,11 @@ const config: Config = {
     },
     screens: {
       'tablet': '880px',
+      "350px":"350px",
+      "801px": "801px",
+      "952px": "952px",
+      "1072px": "1072px",
+      "1091px": "1091px",
       ...defaultTheme.screens,
     },
   },

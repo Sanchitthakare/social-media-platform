@@ -43,7 +43,7 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: "credentials",
       credentials: {
-        emailOrPhone: {
+        email: {
           label: "Email",
           type: "text",
         },
@@ -57,36 +57,24 @@ const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const isEmail = credentials.emailOrPhone.includes("@");
-        let credentialDetails: Record<string, string>;
-
-        if (isEmail) {
-          credentialDetails = {
-            email: credentials.emailOrPhone,
-            password: credentials.password,
-          };
-        } else {
-          credentialDetails = {
-            phone: credentials.emailOrPhone,
-            password: credentials.password,
-          };
-        }
-
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/login`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/login`,
           {
             method: "POST",
             headers: {
-              Accept: "application/json",
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(credentialDetails),
+            body: JSON.stringify({
+              EmailId: credentials.email,
+              Password: credentials.password,
+            }),
           }
         );
 
-        const { success, user, message } = await response.json();
+        const { success, others, message } = await response.json();
+
         if (success) {
-          return user;
+          return others;
         } else {
           throw new Error(message);
         }
@@ -124,36 +112,51 @@ const authOptions: NextAuthOptions = {
 
         console.log("user", user);
         // name, emailId, profileType, image, loggedInUsing
-        const resp = await fetch(
-          "http://localhost:4000/api/checkUserFirstTimeLogin",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: user.name,
-              emailId: user.email,
-              profileType: user.profileType,
-              image: user.image,
-              loggedInUsing: account.provider,
-            }),
-          }
-        );
+        // const resp = await fetch(
+        //   "http://localhost:4000/api/checkUserFirstTimeLogin",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //       name: user.name,
+        //       emailId: user.email,
+        //       profileType: user.profileType,
+        //       image: user.image,
+        //       loggedInUsing: account.provider,
+        //     }),
+        //   }
+        // );
 
-        const { firstTimelogin, success } = await resp.json();
+        // const { firstTimelogin, success } = await resp.json();
 
-        if (success) {
-          user.firstTimeLogin = firstTimelogin;
+        // if (success) {
+        //   user.firstTimeLogin = firstTimelogin;
+        // }
+
+        user.firstTimeLogin = false;
+
+        if (
+          account?.provider === "google" ||
+          account?.provider === "linkedin"
+        ) {
+          token.id = user.id;
+          token.email = user.email;
+          token.name = user.name;
+          token.profileType = user.profileType;
+          token.image = user.image;
+          token.loggedInUsing = account.provider;
+          token.firstTimeLogin = user.firstTimeLogin;
+        } else {
+          token.id = user.UserID;
+          token.email = user.EmailId;
+          token.name = user.Name;
+          token.profileType = user.ProfileType;
+          token.image = user.Image;
+          token.loggedInUsing = account.provider;
+          token.firstTimeLogin = user.firstTimeLogin;
         }
-
-        token.id = user.id;
-        token.email = user.email;
-        token.name = user.name;
-        token.profileType = user.profileType;
-        token.image = user.image;
-        token.loggedInUsing = account.provider;
-        token.firstTimeLogin = user.firstTimeLogin;
       }
       // console.log("user", token);
       return token;

@@ -1,48 +1,80 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+
 type Props = {};
 
 const HomePageInfoPage1 = (props: Props) => {
   return (
-    <div className=" p-2 ">
+    <div className="p-2">
       <div className="max-w-7xl mx-auto flex flex-col gap-4">
-        {[1, 2, 3].map((item, index) => (
-          <div key={index}>
-            <div
-              className={` flex w-full p-4  mb-4  ${
-                (index as number) % 2 === 0
-                  ? "rounded-xl md:rounded-r-full flex-row bg-yellow-100"
-                  : "rounded-xl md:rounded-l-full flex-row-reverse bg-blue-200"
-              }`}
-            >
-              <div className="w-full md:w-2/3 p-10 flex gap-4 flex-col justify-center items-start">
-                <p className="">Lorem Ipsum</p>
-                <p className="">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Expedita ratione sunt dolores pariatur culpa necessitatibus
-                  omnis nisi minus possimus assumenda magni, ipsa voluptatibus
-                  veritatis est laboriosam maiores corrupti corporis. Doloremque
-                  ad hic, cumque facilis quod nulla omnis non! Omnis provident
-                  repudiandae dolore voluptatem accusamus porro suscipit
-                  doloremque veritatis harum perspiciatis laudantium odit eaque
-                  dolor soluta in laboriosam doloribus nam, quidem tempore
-                  voluptatum vero laborum dicta fuga?
-                </p>
-                <button className="p-1 px-3 rounded-full border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white hover:scale-105">
-                  Button {"->"}
-                </button>
-              </div>
-              <div className="hidden  md:flex md:w-1/3 p-6  justify-center items-center">
-                <Image
-                  src={`/manage${(index % 2) + 1}.svg`}
-                  alt="Image"
-                  width={200}
-                  height={200}
-                />
-              </div>
+        {/* Box 1 */}
+        <div>
+          <div className="flex w-full p-4 mb-4 rounded-xl md:rounded-r-full md:flex-row flex-col-reverse bg-pink-50">
+            <div className="w-full md:w-2/3 p-4 flex gap-4 flex-col justify-center items-start">
+              <p className="text-2xl text-blue-800 font-bold text-left pl-4">
+                Investor&apos;s Connect
+              </p>
+              <p className="text-lg text-gray-900 leading-relaxed pl-4">
+                Finding the right investor for your business was one hell of a
+                task but not anymore. With our investor list, you can not only
+                shortlist the investor that best suits your interest but also
+                connect with them.
+              </p>
+              <Link href={"/investor"} className="p-2 px-3 rounded-full border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white hover:scale-105  transition-all duration-400 ml-4">
+                Find Investors {"->"}
+              </Link>
+            </div>
+            <div className="flex md:w-1/3 p-6 justify-center items-center">
+              <Image src={"/first.png"} alt="Startup networking" width={300} height={300} />
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* Box 2 */}
+        <div>
+          <div className="flex w-full p-4 mb-4 rounded-xl md:rounded-l-full md:flex-row-reverse flex-col-reverse  bg-blue-50">
+            <div className="w-full md:w-2/3 p-4 flex gap-4 flex-col justify-center items-start">
+              <p className="text-2xl text-blue-800 font-bold text-left pl-4">
+                Host & Participate in Event
+              </p>
+              <p className="text-lg text-gray-900 leading-relaxed pl-4">
+                Finding a start-up event where you can meet like minded
+                individuals is just a click away. Host, participate and find all
+                the Start-up event acrosss your city and the nation under one
+                roof.
+              </p>
+              <Link href={"/events"} className="p-2 px-3 rounded-full border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white hover:scale-105  transition-all duration-400 ml-4">
+                Explore Events {"->"}
+              </Link>
+            </div>
+            <div className="flex md:w-1/3 p-6 justify-center items-center">
+              <Image src={"/second.png"} alt="Startup networking" width={300} height={300} />
+            </div>
+          </div>
+        </div>
+
+        {/* Box 3 */}
+        <div>
+          <div className="flex w-full p-4  rounded-xl md:rounded-r-full  md:flex-row flex-col-reverse  bg-pink-50">
+            <div className="w-full md:w-2/3 p-4 flex gap-4 flex-col justify-center items-start">
+              <p className="text-2xl text-blue-800 font-bold text-left pl-4">
+                Create or join new communities
+              </p>
+              <p className="text-lg text-gray-900 leading-relaxed pl-4">
+                Community lead growth is the future of markrting in the Start up
+                industry. Create or join a community & get access to networking
+                ,content and expertise of established professionals & founders.
+              </p>
+              <Link href={"/communities"} className="p-2 px-3 rounded-full border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white hover:scale-105  transition-all duration-400 ml-4">
+                Explore Communities {"->"}
+              </Link>
+            </div>
+            <div className="flex md:w-1/3 p-6 justify-center items-center">
+              <Image src={"/third.png"} alt="Startup networking" width={300} height={300} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

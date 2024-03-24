@@ -33,7 +33,7 @@ const MainUI = ({ getIconByName, items }: Props) => {
     };
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        window.innerWidth < 639 && 
+        window.innerWidth < 639 &&
         sidebarRef.current &&
         sidebarButtonRef.current &&
         !sidebarRef.current.contains(event.target as Node) &&
@@ -43,7 +43,7 @@ const MainUI = ({ getIconByName, items }: Props) => {
       }
     };
 
-    handleResize()
+    handleResize();
 
     document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("resize", handleResize);
@@ -55,8 +55,10 @@ const MainUI = ({ getIconByName, items }: Props) => {
 
   //when user slide from left to right make sidebar open
   const handlers = useSwipeable({
-    onSwipedRight: (eventData) => makeSidebarSlide ? setShowSidebar(true): "",
-    onSwipedLeft: (eventData) => makeSidebarSlide ? setShowSidebar(false): "",
+    onSwipedRight: (eventData) =>
+      makeSidebarSlide ? setShowSidebar(true) : "",
+    onSwipedLeft: (eventData) =>
+      makeSidebarSlide ? setShowSidebar(false) : "",
   });
 
   return (
@@ -100,7 +102,6 @@ const MainUI = ({ getIconByName, items }: Props) => {
           <div className="w-full h-screen bg-red-200 sm:m-1 rounded text-wrap flex flex-col flex-wrap mx-2">
             Posts - {status}
             {session && <div>{session?.user?.name}</div>}
-            
             {session && <div>id:{session?.user?.id}</div>}
             {session && <div>{session?.user?.email}</div>}
             {session && <div>{session?.user?.profileType}</div>}

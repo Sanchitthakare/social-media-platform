@@ -10,6 +10,7 @@ import { MdGroups3, MdTimer, MdVideoCameraBack } from "react-icons/md";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { GrGallery } from "react-icons/gr";
 import { useRouter } from "next/navigation";
+import { FcSettings } from "react-icons/fc";
 
 type Props = {};
 
@@ -33,6 +34,7 @@ const Main = (props: Props) => {
     "Events",
     "Gallery",
     "Videos",
+    "Settings"
   ];
 
   function getIconByName(name: string) {
@@ -56,6 +58,8 @@ const Main = (props: Props) => {
         return <GrGallery size={18} />;
       case "videos":
         return <MdVideoCameraBack size={18} />;
+      case "settings":
+        return <FcSettings size={18}/>;
       default:
         return null;
     }

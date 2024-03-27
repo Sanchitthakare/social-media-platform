@@ -1,0 +1,91 @@
+.add-work-experience-modal {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-work-experience-modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .add-work-experience-modal form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-work-experience-modal form input,
+  .add-work-experience-modal form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-work-experience-modal form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #0077b5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-work-experience-modal form button:hover {
+    background-color: #005183;
+  }
+  .add-work-experience-modal .error {
+    display: block;
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+  }  
+  .work-experience-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .experience-item {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .job-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .company-name,
+  .employment-type,
+  .location,
+  .location-type,
+  .dates,
+  .industry {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .description {
+    margin-top: 10px;
+  }
+  
+  /* Add more styles as needed */
+  
